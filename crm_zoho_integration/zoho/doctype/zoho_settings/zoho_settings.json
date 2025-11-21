@@ -10,13 +10,13 @@
   "client_id",
   "client_secret",
   "column_break_bibr",
-  "api_base_uri",
   "redirect_uri",
   "authorize",
   "section_break_byia",
   "column_break_llvw",
   "authorization_code",
   "refresh_token",
+  "server_domain",
   "column_break_mwjt",
   "access_token",
   "access_token_expiry"
@@ -86,12 +86,6 @@
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "api_base_uri",
-   "fieldtype": "Data",
-   "label": "API Base URI",
-   "mandatory_depends_on": "enabled"
-  },
-  {
    "depends_on": "eval: doc.enabled && doc.client_id && doc.client_secret && doc.api_base_uri",
    "fieldname": "authorize",
    "fieldtype": "Button",
@@ -102,12 +96,19 @@
    "fieldtype": "Data",
    "is_virtual": 1,
    "label": "Redirect URI"
+  },
+  {
+   "fieldname": "server_domain",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Server Domain",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2025-11-21 10:50:29.215012",
+ "modified": "2025-11-21 12:32:03.935789",
  "modified_by": "Administrator",
  "module": "Zoho",
  "name": "Zoho Settings",

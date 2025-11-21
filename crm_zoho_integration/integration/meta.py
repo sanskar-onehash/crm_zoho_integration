@@ -5,3 +5,14 @@ SCOPE_PERMISSIONS = {
     "UPDATE": "UPDATE",
     "DELETE": "DELETE",
 }
+
+LOCATIONS_TO_DOMAIN = {
+    "eu": "eu",
+    "au": "com.au",
+    "in": "in",
+    "jp": "jp",
+    "uk": "uk",
+    "us": "com",
+    "ca": "ca",
+    "sa": "sa",
+}

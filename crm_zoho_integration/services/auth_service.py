@@ -1,3 +1,4 @@
+import frappe
 from crm_zoho_integration import utils
 from crm_zoho_integration.integration import meta
 from crm_zoho_integration.integration.auth import auth_client
@@ -17,7 +18,7 @@ def get_auth_url():
         )
 
     auth_client.get_auth_url(
-        api_base_uri=zoho_settings.api_base_uri,
+        server_domain=zoho_settings.server_domain,
         client_id=zoho_settings.client_id,
         redirect_uri=zoho_settings.redirect_uri,
         scope=",".join(scopes),
@@ -38,16 +39,25 @@ def get_access_token(ignore_permissions=False):
     return access_token
 
 
-def generate_access_token(auth_code, ignore_permissions=False):
+def generate_access_token(auth_code, location, ignore_permissions=False):
+    domain = meta.LOCATIONS_TO_DOMAIN.get(location)
+    if not domain:
+        frappe.throw(f"Location <strong>{location}</strong> not supported.")
+
     zoho_settings = utils.get_zoho_settings()
     tokens_data = auth_client.get_tokens(
-        base_uri=zoho_settings.api_base_uri,
+        server_domain=zoho_settings.server_domain,
         client_id=zoho_settings.client_id,
         client_secret=zoho_settings.get_password("client_secret"),
         auth_code=auth_code,
         redirect_uri=zoho_settings.redirect_uri,
     )
-    zoho_settings.set("refresh_token", tokens_data.get("refresh_token"))
+    zoho_settings.update(
+        {
+            "refresh_token": tokens_data.get("refresh_token"),
+            "server_domain": domain,
+        }
+    )
     zoho_settings.set_access_token(
         tokens_data.get("access_token"), tokens_data.get("expires_in")
     )
@@ -60,7 +70,7 @@ def refresh_access_token(ignore_permissions=False):
     zoho_settings = utils.get_zoho_settings()
 
     token_data = auth_client.refresh_access_token(
-        base_uri=zoho_settings.api_base_uri,
+        server_domain=zoho_settings.server_domain,
         client_id=zoho_settings.client_id,
         client_secret=zoho_settings.get_password("client_secret"),
         refresh_token=zoho_settings.get_password("refresh_token"),

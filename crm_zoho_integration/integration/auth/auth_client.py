@@ -1,6 +1,6 @@
 from crm_zoho_integration.integration import base_client as base
 from crm_zoho_integration.integration import utils
-
+from crm_zoho_integration.integration.auth import meta
 
 AUTH_VERSION = "v2"
 AUTH_BASE_ENDPOINT = f"/oauth/{AUTH_VERSION}"
@@ -13,7 +13,7 @@ AUTH_GRANT_ACCESS_TYPE = "offline"
 
 
 def get_auth_url(
-    api_base_uri, client_id, redirect_uri, scope, prompt_for_consent=False
+    server_domain, client_id, redirect_uri, scope, prompt_for_consent=False
 ):
     params = {
         "access_type": AUTH_GRANT_ACCESS_TYPE,
@@ -25,13 +25,13 @@ def get_auth_url(
     if prompt_for_consent:
         params["prompt"] = "consent"
 
-    return f"{api_base_uri}{_get_endpoint('auth')}?{utils.prepare_url_params(params)}"
+    return f"{utils.get_base_uri(meta.HOST_NAME, server_domain)}{_get_endpoint('auth')}?{utils.prepare_url_params(params)}"
 
 
-def get_tokens(base_uri, client_id, client_secret, auth_code, redirect_uri):
+def get_tokens(server_domain, client_id, client_secret, auth_code, redirect_uri):
     token_data = base.post(
         endpoint=_get_endpoint("token"),
-        base_uri=base_uri,
+        base_uri=utils.get_base_uri(meta.HOST_NAME, server_domain),
         params={
             "client_id": client_id,
             "client_secret": client_secret,
@@ -47,10 +47,10 @@ def get_tokens(base_uri, client_id, client_secret, auth_code, redirect_uri):
     }
 
 
-def refresh_access_token(base_uri, client_id, client_secret, refresh_token):
+def refresh_access_token(server_domain, client_id, client_secret, refresh_token):
     token_data = base.post(
         endpoint=_get_endpoint("token"),
-        base_uri=base_uri,
+        base_uri=utils.get_base_uri(meta.HOST_NAME, server_domain),
         params={
             "client_id": client_id,
             "client_secret": client_secret,

@@ -19,13 +19,13 @@ class ZohoSettings(Document):
 
         access_token: DF.Password | None
         access_token_expiry: DF.Datetime | None
-        api_base_uri: DF.Data | None
         authorization_code: DF.Password | None
         client_id: DF.Data | None
         client_secret: DF.Password | None
         enabled: DF.Check
         redirect_uri: DF.Data | None
         refresh_token: DF.Password | None
+        server_domain: DF.Data | None
     # end: auto-generated types
 
     @property
