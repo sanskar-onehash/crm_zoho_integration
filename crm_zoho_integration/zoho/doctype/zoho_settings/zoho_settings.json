@@ -1,0 +1,131 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-11-14 12:29:29.892735",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "enabled",
+  "section_break_oaee",
+  "client_id",
+  "client_secret",
+  "column_break_bibr",
+  "redirect_uri",
+  "authorize",
+  "section_break_byia",
+  "column_break_llvw",
+  "authorization_code",
+  "refresh_token",
+  "server_domain",
+  "column_break_mwjt",
+  "access_token",
+  "access_token_expiry"
+ ],
+ "fields": [
+  {
+   "default": "0",
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "label": "Enabled"
+  },
+  {
+   "depends_on": "enabled",
+   "fieldname": "section_break_oaee",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "client_id",
+   "fieldtype": "Data",
+   "label": "Client ID",
+   "mandatory_depends_on": "enabled"
+  },
+  {
+   "fieldname": "client_secret",
+   "fieldtype": "Password",
+   "label": "Client Secret",
+   "mandatory_depends_on": "enabled"
+  },
+  {
+   "fieldname": "column_break_llvw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "access_token",
+   "fieldtype": "Password",
+   "hidden": 1,
+   "label": "Access Token"
+  },
+  {
+   "fieldname": "refresh_token",
+   "fieldtype": "Password",
+   "hidden": 1,
+   "label": "Refresh Token"
+  },
+  {
+   "fieldname": "access_token_expiry",
+   "fieldtype": "Datetime",
+   "hidden": 1,
+   "label": "Access Token Expiry"
+  },
+  {
+   "fieldname": "section_break_byia",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_mwjt",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "authorization_code",
+   "fieldtype": "Password",
+   "hidden": 1,
+   "label": "Authorization Code"
+  },
+  {
+   "fieldname": "column_break_bibr",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval: doc.enabled && doc.client_id && doc.client_secret && doc.api_base_uri",
+   "fieldname": "authorize",
+   "fieldtype": "Button",
+   "label": "Authorize"
+  },
+  {
+   "fieldname": "redirect_uri",
+   "fieldtype": "Data",
+   "is_virtual": 1,
+   "label": "Redirect URI"
+  },
+  {
+   "fieldname": "server_domain",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Server Domain",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2025-11-21 12:32:03.935789",
+ "modified_by": "Administrator",
+ "module": "Zoho",
+ "name": "Zoho Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
