@@ -2,7 +2,7 @@ import frappe
 from crm_zoho_integration import utils
 from crm_zoho_integration.integration import meta
 from crm_zoho_integration.integration.auth import auth_client
-from crm_zoho_integration.integration.sign import sign_client, sign_meta
+from crm_zoho_integration.integration.sign import sign_meta
 
 
 def get_auth_url():
