@@ -1,0 +1,192 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-11-21 14:18:26.884139",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "owner_id",
+  "owner_email",
+  "owner_first_name",
+  "owner_last_name",
+  "column_break_ridm",
+  "template_id",
+  "template_name",
+  "template_created_on",
+  "template_modified_on",
+  "section_break_ppjx",
+  "reminder_period",
+  "column_break_wwng",
+  "email_reminders",
+  "is_deleted",
+  "section_break_hvix",
+  "documents",
+  "section_break_subx",
+  "actions",
+  "section_break_ulja",
+  "request_type_id",
+  "column_break_rwoh",
+  "request_type_name",
+  "section_break_cslx",
+  "description",
+  "column_break_ojby",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "owner_id",
+   "fieldtype": "Data",
+   "label": "Owner ID",
+   "read_only": 1
+  },
+  {
+   "fieldname": "owner_email",
+   "fieldtype": "Data",
+   "label": "Owner Email",
+   "read_only": 1
+  },
+  {
+   "fieldname": "owner_first_name",
+   "fieldtype": "Data",
+   "label": "Owner First Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_ridm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "template_id",
+   "fieldtype": "Data",
+   "label": "Template ID",
+   "read_only": 1
+  },
+  {
+   "fieldname": "template_created_on",
+   "fieldtype": "Datetime",
+   "label": "Template Created On",
+   "read_only": 1
+  },
+  {
+   "fieldname": "template_modified_on",
+   "fieldtype": "Datetime",
+   "label": "Template Modified On",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_ppjx",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "email_reminders",
+   "fieldtype": "Check",
+   "label": "Email Reminders"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Long Text",
+   "label": "Description"
+  },
+  {
+   "fieldname": "template_name",
+   "fieldtype": "Data",
+   "label": "Template Name"
+  },
+  {
+   "fieldname": "section_break_cslx",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_ojby",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Text Editor",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "reminder_period",
+   "fieldtype": "Int",
+   "label": "Reminder Period"
+  },
+  {
+   "fieldname": "column_break_wwng",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_deleted",
+   "fieldtype": "Check",
+   "label": "Is Deleted"
+  },
+  {
+   "fieldname": "section_break_ulja",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "request_type_id",
+   "fieldtype": "Data",
+   "label": "Request Type ID"
+  },
+  {
+   "fieldname": "request_type_name",
+   "fieldtype": "Data",
+   "label": "Request Type Name"
+  },
+  {
+   "fieldname": "owner_last_name",
+   "fieldtype": "Data",
+   "label": "Owner Last Name"
+  },
+  {
+   "fieldname": "column_break_rwoh",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_hvix",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "documents",
+   "fieldtype": "Table",
+   "label": "Documents",
+   "options": "ZohoSign Template Documents"
+  },
+  {
+   "fieldname": "section_break_subx",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "actions",
+   "fieldtype": "Table",
+   "label": "Actions",
+   "options": "ZohoSign Document Actions"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-11-21 15:47:12.655527",
+ "modified_by": "Administrator",
+ "module": "ZohoSign",
+ "name": "ZohoSign Template",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

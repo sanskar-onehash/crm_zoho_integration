@@ -1,0 +1,61 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:action_id",
+ "creation": "2025-11-21 15:05:00.349248",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "action_id",
+  "recipient_type",
+  "description"
+ ],
+ "fields": [
+  {
+   "fieldname": "action_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Action ID",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "recipient_type",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Recipient Type",
+   "reqd": 1
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description"
+  }
+ ],
+ "links": [],
+ "modified": "2025-11-21 15:08:24.857899",
+ "modified_by": "Administrator",
+ "module": "ZohoSign",
+ "name": "ZohoSign Action",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "description",
+ "show_title_field_in_link": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "recipient_type"
+}

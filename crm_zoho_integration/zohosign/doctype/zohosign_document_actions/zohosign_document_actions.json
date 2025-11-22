@@ -1,0 +1,114 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-11-21 15:29:53.736770",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "action_id",
+  "action_type",
+  "action_status",
+  "column_break_gyvl",
+  "recipient_name",
+  "recipient_email",
+  "recipient_phone_number",
+  "section_break_eqse",
+  "signing_order",
+  "column_break_nulo",
+  "verify_recipient",
+  "allow_signing",
+  "section_break_orll",
+  "private_notes"
+ ],
+ "fields": [
+  {
+   "default": "0",
+   "fieldname": "verify_recipient",
+   "fieldtype": "Check",
+   "label": "Verify Recipient"
+  },
+  {
+   "fieldname": "action_id",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Action ID"
+  },
+  {
+   "fieldname": "action_type",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Action Type",
+   "options": "ZohoSign Action",
+   "reqd": 1
+  },
+  {
+   "fieldname": "recipient_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Recipient Name"
+  },
+  {
+   "fieldname": "recipient_email",
+   "fieldtype": "Data",
+   "label": "Recipient Email",
+   "options": "Email"
+  },
+  {
+   "fieldname": "signing_order",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Signing Order"
+  },
+  {
+   "default": "0",
+   "fieldname": "allow_signing",
+   "fieldtype": "Check",
+   "label": "Allow Signing"
+  },
+  {
+   "fieldname": "action_status",
+   "fieldtype": "Data",
+   "label": "Action Status",
+   "read_only": 1
+  },
+  {
+   "fieldname": "recipient_phone_number",
+   "fieldtype": "Phone",
+   "label": "Recipient Phone Number"
+  },
+  {
+   "fieldname": "private_notes",
+   "fieldtype": "Long Text",
+   "label": "Private Notes"
+  },
+  {
+   "fieldname": "column_break_gyvl",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_eqse",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_nulo",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_orll",
+   "fieldtype": "Section Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-11-21 15:45:28.767379",
+ "modified_by": "Administrator",
+ "module": "ZohoSign",
+ "name": "ZohoSign Document Actions",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
