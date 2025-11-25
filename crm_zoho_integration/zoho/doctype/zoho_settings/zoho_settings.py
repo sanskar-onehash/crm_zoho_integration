@@ -40,9 +40,12 @@ class ZohoSettings(Document):
         access_token = None
 
         if self.access_token:
-            token_expiry = frappe.utils.get_datetime(self.access_token_expiry)
-            if (token_expiry - cur_time).total_seconds() > TOKEN_EXPIRY_BUFFER:
+            if self.development_mode:
                 access_token = self.get_password("access_token")
+            else:
+                token_expiry = frappe.utils.get_datetime(self.access_token_expiry)
+                if (token_expiry - cur_time).total_seconds() > TOKEN_EXPIRY_BUFFER:
+                    access_token = self.get_password("access_token")
 
         return access_token
 
