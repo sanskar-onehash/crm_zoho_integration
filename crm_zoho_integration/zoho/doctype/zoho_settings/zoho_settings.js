@@ -4,7 +4,7 @@
 frappe.ui.form.on("Zoho Settings", {
   authorize(frm) {
     if (frm.is_dirty()) {
-      frappe.msgprint("Please save the changes before providing the consent.");
+      frappe.msgprint("Please save the changes before authorizing.");
       return;
     }
 
