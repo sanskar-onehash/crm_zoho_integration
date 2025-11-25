@@ -83,7 +83,7 @@ app_license = "mit"
 # ------------
 
 # before_install = "crm_zoho_integration.install.before_install"
-# after_install = "crm_zoho_integration.install.after_install"
+after_install = "crm_zoho_integration.install.after_install"
 
 # Uninstallation
 # ------------
