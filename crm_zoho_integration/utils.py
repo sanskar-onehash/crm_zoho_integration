@@ -1,5 +1,4 @@
 import frappe
-from frappe import utils
 
 
 def get_zoho_settings(throw=True):
@@ -11,10 +10,5 @@ def get_zoho_settings(throw=True):
     return zoho_settings
 
 
-def get_zoho_base_uri():
-    zoho_settings = get_zoho_settings()
-    return zoho_settings.api_base_uri
-
-
 def get_absolute_url(path):
-    return utils.get_url() + path
+    return frappe.utils.get_url() + path
