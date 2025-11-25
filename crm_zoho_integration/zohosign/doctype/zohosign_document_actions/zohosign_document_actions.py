@@ -25,7 +25,9 @@ class ZohoSignDocumentActions(Document):
 		recipient_email: DF.Data | None
 		recipient_name: DF.Data | None
 		recipient_phone_number: DF.Phone | None
+		role: DF.Int
 		signing_order: DF.Int
+		verification_type: DF.Data | None
 		verify_recipient: DF.Check
 	# end: auto-generated types
 	pass

@@ -20,7 +20,9 @@ class ZohoSignTemplate(Document):
 		description: DF.LongText | None
 		documents: DF.Table[ZohoSignTemplateDocuments]
 		email_reminders: DF.Check
+		expiration_days: DF.Int
 		is_deleted: DF.Check
+		is_sequential: DF.Check
 		notes: DF.TextEditor | None
 		owner_email: DF.Data | None
 		owner_first_name: DF.Data | None

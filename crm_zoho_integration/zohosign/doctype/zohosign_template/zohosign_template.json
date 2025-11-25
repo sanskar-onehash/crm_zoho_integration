@@ -16,9 +16,11 @@
   "template_modified_on",
   "section_break_ppjx",
   "reminder_period",
+  "expiration_days",
   "column_break_wwng",
   "email_reminders",
   "is_deleted",
+  "is_sequential",
   "section_break_hvix",
   "documents",
   "section_break_subx",
@@ -163,11 +165,22 @@
    "fieldtype": "Table",
    "label": "Actions",
    "options": "ZohoSign Document Actions"
+  },
+  {
+   "fieldname": "expiration_days",
+   "fieldtype": "Int",
+   "label": "Expiration Days"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_sequential",
+   "fieldtype": "Check",
+   "label": "Is Sequential"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-11-21 15:47:12.655527",
+ "modified": "2025-11-25 21:07:21.804157",
  "modified_by": "Administrator",
  "module": "ZohoSign",
  "name": "ZohoSign Template",
