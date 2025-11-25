@@ -7,6 +7,7 @@
  "field_order": [
   "enabled",
   "section_break_oaee",
+  "development_mode",
   "client_id",
   "client_secret",
   "column_break_bibr",
@@ -29,31 +30,34 @@
    "label": "Enabled"
   },
   {
-   "depends_on": "enabled",
    "fieldname": "section_break_oaee",
    "fieldtype": "Section Break"
   },
   {
+   "depends_on": "eval: doc.enabled && !doc.development_mode",
    "fieldname": "client_id",
    "fieldtype": "Data",
    "label": "Client ID",
-   "mandatory_depends_on": "enabled"
+   "mandatory_depends_on": "eval: doc.enabled && !doc.development_mode"
   },
   {
+   "depends_on": "eval: doc.enabled && !doc.development_mode",
    "fieldname": "client_secret",
    "fieldtype": "Password",
    "label": "Client Secret",
-   "mandatory_depends_on": "enabled"
+   "mandatory_depends_on": "eval: doc.enabled && !doc.development_mode"
   },
   {
    "fieldname": "column_break_llvw",
    "fieldtype": "Column Break"
   },
   {
+   "depends_on": "eval: doc.enabled && doc.development_mode",
    "fieldname": "access_token",
    "fieldtype": "Password",
-   "hidden": 1,
-   "label": "Access Token"
+   "label": "Access Token",
+   "mandatory_depends_on": "eval: doc.enabled && doc.development_mode",
+   "read_only_depends_on": "eval: !doc.development_mode"
   },
   {
    "fieldname": "refresh_token",
@@ -92,23 +96,31 @@
    "label": "Authorize"
   },
   {
+   "depends_on": "enabled",
    "fieldname": "redirect_uri",
    "fieldtype": "Data",
    "is_virtual": 1,
    "label": "Redirect URI"
   },
   {
+   "depends_on": "eval: doc.enabled && doc.development_mode",
    "fieldname": "server_domain",
    "fieldtype": "Data",
-   "hidden": 1,
    "label": "Server Domain",
-   "read_only": 1
+   "mandatory_depends_on": "eval: doc.enabled && doc.development_mode"
+  },
+  {
+   "default": "0",
+   "depends_on": "enabled",
+   "fieldname": "development_mode",
+   "fieldtype": "Check",
+   "label": "Development Mode"
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2025-11-21 12:32:03.935789",
+ "modified": "2025-11-25 13:47:13.173917",
  "modified_by": "Administrator",
  "module": "Zoho",
  "name": "Zoho Settings",

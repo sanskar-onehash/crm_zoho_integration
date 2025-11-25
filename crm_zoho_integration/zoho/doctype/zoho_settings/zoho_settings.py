@@ -22,6 +22,7 @@ class ZohoSettings(Document):
         authorization_code: DF.Password | None
         client_id: DF.Data | None
         client_secret: DF.Password | None
+        development_mode: DF.Check
         enabled: DF.Check
         redirect_uri: DF.Data | None
         refresh_token: DF.Password | None
