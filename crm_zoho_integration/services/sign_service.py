@@ -2,12 +2,12 @@ import frappe
 from . import auth_service
 from crm_zoho_integration import utils
 from crm_zoho_integration.integration.sign import sign_client
-from crm_zoho_integration.mappers.sign import templates_mapper
+from crm_zoho_integration.mappers.sign import mappers
 
-FETCH_ROW_COUNT = 100
+FETCH_ROW_COUNT = 25
 
 
-def sync_templates(publish_progress: None):
+def sync_templates(publish_progress: None) -> None:
     zoho_settings = utils.get_zoho_settings()
     start_index = 0
 
@@ -33,7 +33,7 @@ def sync_templates(publish_progress: None):
             if not frappe.db.exists(
                 "ZohoSign Template", {"template_id": template.get("template_id")}
             ):
-                templates_mapper.get_template_doc(template).save()
+                mappers.get_template_doc(template).save()
 
         if templates_data.get("has_more_rows"):
             start_index = start_index + FETCH_ROW_COUNT - 1
