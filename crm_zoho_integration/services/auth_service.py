@@ -17,7 +17,7 @@ def get_auth_url():
             f"{sign_meta.SERVICE_NAME}.{sign_meta.SERVICE_FEATURES[feature]}.{meta.SCOPE_PERMISSIONS['ALL']}"
         )
 
-    auth_client.get_auth_url(
+    return auth_client.get_auth_url(
         server_domain=zoho_settings.server_domain,
         client_id=zoho_settings.client_id,
         redirect_uri=zoho_settings.redirect_uri,
@@ -26,7 +26,9 @@ def get_auth_url():
 
 
 def get_redirect_url():
-    return utils.get_absolute_url("/crm_zoho_integration.api.auth.verify_auth")
+    return utils.get_absolute_url(
+        "/api/method/crm_zoho_integration.api.auth.verify_auth"
+    )
 
 
 def get_access_token(ignore_permissions=False):
