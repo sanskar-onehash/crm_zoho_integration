@@ -71,6 +71,9 @@ def generate_access_token(auth_code, location, ignore_permissions=False):
 def refresh_access_token(ignore_permissions=False):
     zoho_settings = utils.get_zoho_settings()
 
+    if not zoho_settings.refresh_token:
+        frappe.throw("No refresh token found, please complete the auth flow.")
+
     token_data = auth_client.refresh_access_token(
         server_domain=zoho_settings.server_domain,
         client_id=zoho_settings.client_id,
