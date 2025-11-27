@@ -20,7 +20,12 @@
   "server_domain",
   "column_break_mwjt",
   "access_token",
-  "access_token_expiry"
+  "access_token_expiry",
+  "zoho_sign_tab",
+  "sign_hmac_key",
+  "generate_sign_hmac_secret",
+  "column_break_egkg",
+  "sign_webhook_url"
  ],
  "fields": [
   {
@@ -115,12 +120,39 @@
    "fieldname": "development_mode",
    "fieldtype": "Check",
    "label": "Development Mode"
+  },
+  {
+   "fieldname": "zoho_sign_tab",
+   "fieldtype": "Tab Break",
+   "label": "Zoho Sign"
+  },
+  {
+   "fieldname": "sign_hmac_key",
+   "fieldtype": "Password",
+   "label": "HMAC Secret Key",
+   "read_only": 1
+  },
+  {
+   "fieldname": "generate_sign_hmac_secret",
+   "fieldtype": "Button",
+   "label": "Generate HMAC Secret"
+  },
+  {
+   "depends_on": "sign_hmac_key",
+   "fieldname": "sign_webhook_url",
+   "fieldtype": "Data",
+   "is_virtual": 1,
+   "label": "Webhook URL"
+  },
+  {
+   "fieldname": "column_break_egkg",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2025-11-25 14:13:41.551295",
+ "modified": "2025-11-27 13:52:44.081959",
  "modified_by": "Administrator",
  "module": "Zoho",
  "name": "Zoho Settings",

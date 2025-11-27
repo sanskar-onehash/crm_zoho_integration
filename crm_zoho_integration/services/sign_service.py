@@ -7,6 +7,12 @@ from crm_zoho_integration.mappers.sign import mappers
 FETCH_ROW_COUNT = 25
 
 
+def get_sign_webhook_url() -> str:
+    return utils.get_absolute_url(
+        "/api/method/crm_zoho_integration.webhook.sign.handle_document_event"
+    )
+
+
 def sync_templates(publish_progress: None) -> None:
     zoho_settings = utils.get_zoho_settings()
     start_index = 0

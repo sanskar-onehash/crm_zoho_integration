@@ -8,6 +8,11 @@ FETCH_TEMPLATES_PROGRESS_EVENT = "fetch_zohosign_templates_progress"
 
 
 @frappe.whitelist()
+def generate_hmac_secret():
+    return frappe.generate_hash(length=128)
+
+
+@frappe.whitelist()
 def fetch_templates():
     if not frappe.has_permission("ZohoSign Template", "create"):
         frappe.throw("User does not have permission to create new ZohoSign Template")

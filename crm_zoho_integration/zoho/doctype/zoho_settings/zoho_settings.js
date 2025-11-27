@@ -12,7 +12,28 @@ frappe.ui.form.on("Zoho Settings", {
       method: "crm_zoho_integration.api.auth.get_auth_url",
       freeze: true,
       freeze_message: "Redirecting for authorization...",
-      callback: ({ message: url }) => url && (window.location.href = url),
+      callback: (res) => {
+        if (res && res.message) {
+          window.location.href = res.message;
+        } else {
+          frappe.throw("Error occured while requesting for authorization.");
+        }
+      },
+    });
+  },
+
+  generate_sign_hmac_secret(frm) {
+    frappe.call({
+      method: "crm_zoho_integration.api.sign.generate_hmac_secret",
+      freeze: true,
+      freeze_message: "Generating HMAC Secret Key...",
+      callback: (res) => {
+        if (res && res.message) {
+          frm.set_value("sign_hmac_key", res.message);
+        } else {
+          frappe.throw("Error occured while generating secret key.");
+        }
+      },
     });
   },
 });

@@ -27,6 +27,8 @@ class ZohoSettings(Document):
         redirect_uri: DF.Data | None
         refresh_token: DF.Password | None
         server_domain: DF.Data | None
+        sign_hmac_key: DF.Password | None
+        sign_webhook_url: DF.Data | None
     # end: auto-generated types
 
     @property
@@ -34,6 +36,12 @@ class ZohoSettings(Document):
         from crm_zoho_integration.services.auth_service import get_redirect_url
 
         return get_redirect_url()
+
+    @property
+    def sign_webhook_url(self):
+        from crm_zoho_integration.services.sign_service import get_sign_webhook_url
+
+        return get_sign_webhook_url()
 
     def get_access_token(self):
         cur_time = frappe.utils.get_datetime()
