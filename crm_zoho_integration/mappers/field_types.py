@@ -3,6 +3,7 @@ from enum import Enum
 
 class FieldTypes(Enum):
     INTEGER = "int"
+    DOUBLE = "double"
     STRING = "str"
     BOOLEAN = "bool"
     LIST = "list"

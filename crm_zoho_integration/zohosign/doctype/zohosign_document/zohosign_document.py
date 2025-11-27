@@ -5,7 +5,7 @@
 from frappe.model.document import Document
 
 
-class ZohoSignTemplate(Document):
+class ZohoSignDocument(Document):
 	# begin: auto-generated types
 	# This code is auto-generated. Do not modify anything in this block.
 
@@ -16,25 +16,33 @@ class ZohoSignTemplate(Document):
 		from crm_zoho_integration.zohosign.doctype.zohosign_template_documents.zohosign_template_documents import ZohoSignTemplateDocuments
 		from frappe.types import DF
 
+		action_time: DF.Datetime | None
 		actions: DF.Table[ZohoSignDocumentActions]
-		description: DF.LongText | None
+		amended_from: DF.Link | None
+		description: DF.SmallText | None
+		document_created_on: DF.Datetime | None
+		document_expires_by: DF.Datetime | None
+		document_id: DF.Data
+		document_modified_on: DF.Datetime | None
+		document_name: DF.Data | None
 		documents: DF.Table[ZohoSignTemplateDocuments]
-		email_reminders: DF.Check
 		expiration_days: DF.Int
+		from_template: DF.Link
+		in_process: DF.Check
 		is_deleted: DF.Check
+		is_expiring: DF.Check
 		is_sequential: DF.Check
-		naming_series: DF.Literal["", "ZH-SIGN-TMPL-"]
-		notes: DF.Text | None
+		naming_series: DF.Literal["", "ZH-SIGN-DOC-"]
+		notes: DF.SmallText | None
 		owner_email: DF.Data | None
 		owner_first_name: DF.Data | None
 		owner_id: DF.Data | None
 		owner_last_name: DF.Data | None
-		reminder_period: DF.Int
+		request_status: DF.Data | None
 		request_type_id: DF.Data | None
 		request_type_name: DF.Data | None
-		template_created_on: DF.Datetime | None
-		template_id: DF.Data
-		template_modified_on: DF.Datetime | None
-		template_name: DF.Data | None
+		self_sign: DF.Check
+		sign_percentage: DF.Percent
+		sign_submitted_on: DF.Datetime | None
 	# end: auto-generated types
 	pass

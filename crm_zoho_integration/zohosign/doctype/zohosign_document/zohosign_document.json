@@ -1,0 +1,291 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-11-26 09:22:27.628965",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_w9it",
+  "naming_series",
+  "document_id",
+  "document_name",
+  "request_status",
+  "sign_percentage",
+  "amended_from",
+  "from_template",
+  "column_break_kkoo",
+  "owner_id",
+  "owner_first_name",
+  "owner_last_name",
+  "owner_email",
+  "description",
+  "column_break_hcsa",
+  "document_created_on",
+  "document_modified_on",
+  "action_time",
+  "sign_submitted_on",
+  "document_expires_by",
+  "section_break_gjux",
+  "expiration_days",
+  "is_deleted",
+  "is_sequential",
+  "is_expiring",
+  "self_sign",
+  "in_process",
+  "column_break_jbzh",
+  "request_type_id",
+  "request_type_name",
+  "section_break_hzhu",
+  "documents",
+  "section_break_ydzq",
+  "actions",
+  "section_break_tncw",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_w9it",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "ZohoSign Document",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "request_status",
+   "fieldtype": "Data",
+   "label": "Request Status",
+   "read_only": 1
+  },
+  {
+   "fieldname": "owner_id",
+   "fieldtype": "Data",
+   "label": "Owner ID",
+   "read_only": 1
+  },
+  {
+   "fieldname": "owner_first_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Owner First Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "owner_last_name",
+   "fieldtype": "Data",
+   "label": "Owner Last Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "owner_email",
+   "fieldtype": "Data",
+   "label": "Owner Email",
+   "read_only": 1
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description"
+  },
+  {
+   "fieldname": "column_break_hcsa",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "document_created_on",
+   "fieldtype": "Datetime",
+   "label": "Document Created On",
+   "read_only": 1
+  },
+  {
+   "fieldname": "document_modified_on",
+   "fieldtype": "Datetime",
+   "label": "Document Modified On",
+   "read_only": 1
+  },
+  {
+   "fieldname": "action_time",
+   "fieldtype": "Datetime",
+   "label": "Action Time",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sign_submitted_on",
+   "fieldtype": "Datetime",
+   "label": "Sign Submitted On",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sign_percentage",
+   "fieldtype": "Percent",
+   "in_list_view": 1,
+   "label": "Sign Percentage",
+   "read_only": 1
+  },
+  {
+   "fieldname": "document_expires_by",
+   "fieldtype": "Datetime",
+   "label": "Document Expires By",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_gjux",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "request_type_id",
+   "fieldtype": "Data",
+   "label": "Request Type ID",
+   "read_only": 1
+  },
+  {
+   "fieldname": "request_type_name",
+   "fieldtype": "Data",
+   "label": "Request Type Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_jbzh",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "expiration_days",
+   "fieldtype": "Int",
+   "label": "Expiration Days"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_deleted",
+   "fieldtype": "Check",
+   "label": "Is Deleted",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_sequential",
+   "fieldtype": "Check",
+   "label": "Is Sequential"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_expiring",
+   "fieldtype": "Check",
+   "label": "Is Expiring",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "self_sign",
+   "fieldtype": "Check",
+   "label": "Self Sign",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "in_process",
+   "fieldtype": "Check",
+   "label": "In Process",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_hzhu",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "documents",
+   "fieldtype": "Table",
+   "label": "Documents",
+   "options": "ZohoSign Template Documents",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_ydzq",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "actions",
+   "fieldtype": "Table",
+   "label": "Actions",
+   "options": "ZohoSign Document Actions"
+  },
+  {
+   "fieldname": "section_break_tncw",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "column_break_kkoo",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "document_id",
+   "fieldtype": "Data",
+   "label": "Document ID",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "document_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Document Name"
+  },
+  {
+   "default": "ZH-SIGN-DOC-",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Naming Series",
+   "options": "\nZH-SIGN-DOC-",
+   "reqd": 1
+  },
+  {
+   "fieldname": "from_template",
+   "fieldtype": "Link",
+   "label": "From Template",
+   "options": "ZohoSign Template",
+   "read_only": 1,
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-11-27 11:48:13.227536",
+ "modified_by": "Administrator",
+ "module": "ZohoSign",
+ "name": "ZohoSign Document",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "show_title_field_in_link": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "document_name"
+}

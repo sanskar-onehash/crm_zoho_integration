@@ -64,7 +64,9 @@
    "fieldname": "template_id",
    "fieldtype": "Data",
    "label": "Template ID",
-   "read_only": 1
+   "read_only": 1,
+   "reqd": 1,
+   "unique": 1
   },
   {
    "fieldname": "template_created_on",
@@ -108,7 +110,7 @@
   },
   {
    "fieldname": "notes",
-   "fieldtype": "Text Editor",
+   "fieldtype": "Text",
    "label": "Notes"
   },
   {
@@ -186,13 +188,13 @@
    "fieldtype": "Select",
    "hidden": 1,
    "label": "Naming Series",
-   "options": "ZH-SIGN-TMPL-",
+   "options": "\nZH-SIGN-TMPL-",
    "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-11-25 21:56:23.944510",
+ "modified": "2025-11-27 11:33:11.689926",
  "modified_by": "Administrator",
  "module": "ZohoSign",
  "name": "ZohoSign Template",

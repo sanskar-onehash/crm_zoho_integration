@@ -6,3 +6,8 @@ from . import mappings
 def get_template_doc(template_data: dict):
     template_doc_data = apply_mapping(template_data, mappings.TEMPLATE_TO_DOC_MAP)
     return frappe.get_doc({"doctype": "ZohoSign Template", **template_doc_data})
+
+
+def get_document_doc(document_data: dict):
+    document_doc_data = apply_mapping(document_data, mappings.DOCUMENT_TO_DOC_MAP)
+    return frappe.get_doc({"doctype": "ZohoSign Document", **document_doc_data})
