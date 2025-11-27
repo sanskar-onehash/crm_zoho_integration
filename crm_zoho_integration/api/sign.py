@@ -24,3 +24,11 @@ def fetch_templates():
         "msg": "ZohoSign Templates syncing started in background.",
         "track_on": FETCH_TEMPLATES_PROGRESS_EVENT,
     }
+
+
+@frappe.whitelist()
+def use_template(template_id: str, template_data: str | dict):
+    if isinstance(template_data, str):
+        template_data = frappe.parse_json(template_data)
+
+    return sign_service.use_template(template_id, template_data)

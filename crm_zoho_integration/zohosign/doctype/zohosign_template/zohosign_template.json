@@ -34,7 +34,8 @@
   "section_break_cslx",
   "description",
   "column_break_ojby",
-  "notes"
+  "notes",
+  "dashboard_tab"
  ],
  "fields": [
   {
@@ -190,11 +191,22 @@
    "label": "Naming Series",
    "options": "\nZH-SIGN-TMPL-",
    "reqd": 1
+  },
+  {
+   "fieldname": "dashboard_tab",
+   "fieldtype": "Tab Break",
+   "label": "Connections",
+   "show_dashboard": 1
   }
  ],
  "index_web_pages_for_search": 1,
- "links": [],
- "modified": "2025-11-27 11:33:11.689926",
+ "links": [
+  {
+   "link_doctype": "ZohoSign Document",
+   "link_fieldname": "from_template"
+  }
+ ],
+ "modified": "2025-11-27 11:57:15.194348",
  "modified_by": "Administrator",
  "module": "ZohoSign",
  "name": "ZohoSign Template",

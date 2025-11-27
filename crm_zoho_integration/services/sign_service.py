@@ -41,3 +41,30 @@ def sync_templates(publish_progress: None) -> None:
             break
 
     frappe.db.commit()
+
+
+def use_template(template_id: str, template_data: dict, quick_send: bool = True) -> str:
+    if not frappe.has_permission("ZohoSign Template"):
+        frappe.throw("User don't have permission to access ZohoSign Template.")
+    if not frappe.has_permission("ZohoSign Document", "create"):
+        frappe.throw("User don't have permission to create ZohoSign Document")
+
+    zoho_settings = utils.get_zoho_settings()
+    template_doc = frappe.get_doc("ZohoSign Template", template_id)
+
+    template_payload = mappers.create_use_template_payload(
+        template_doc, **template_data
+    )
+
+    document_data = sign_client.use_template(
+        template_id=template_doc.template_id,
+        template_payload=template_payload,
+        quick_send=quick_send,
+        access_token=auth_service.get_access_token(),
+        server_domain=zoho_settings.server_domain,
+    )
+    document_doc = mappers.get_document_doc(document_data)
+    document_doc.set("from_template", template_doc.name)
+    document_doc.save()
+
+    return document_doc.name

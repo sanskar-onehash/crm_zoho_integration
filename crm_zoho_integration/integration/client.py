@@ -3,7 +3,7 @@ from json import JSONDecodeError
 
 
 def _prepare_headers(headers=None, access_token=None):
-    if not headers:
+    if headers is None:
         headers = {"Content-Type": "application/json"}
     if access_token:
         headers["Authorization"] = f"Zoho-oauthtoken {access_token}"
