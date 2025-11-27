@@ -9,9 +9,24 @@ def get_template_doc(template_data: dict):
     return frappe.get_doc({"doctype": "ZohoSign Template", **template_doc_data})
 
 
-def get_document_doc(document_data: dict):
+def get_document_doc(document_data: dict, as_dict=False):
     document_doc_data = apply_mapping(document_data, mappings.DOCUMENT_TO_DOC_MAP)
-    return frappe.get_doc({"doctype": "ZohoSign Document", **document_doc_data})
+    return (
+        document_doc_data
+        if as_dict
+        else frappe.get_doc({"doctype": "ZohoSign Document", **document_doc_data})
+    )
+
+
+def get_document_activities_doc(activities_data: dict, as_dict=False):
+    document_doc_data = apply_mapping(
+        activities_data, mappings.DOCUMENT_ACTIVITES_TO_DOC_MAP
+    )
+    return (
+        document_doc_data
+        if as_dict
+        else frappe.get_doc({"doctype": "ZohoSign Document", **document_doc_data})
+    )
 
 
 def create_use_template_payload(

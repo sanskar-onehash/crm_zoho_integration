@@ -159,3 +159,18 @@ DOCUMENT_TO_DOC_MAP = {
         "item_mapping": DOCUMENT_ACTIONS_TO_DOC_MAP,
     },
 }
+
+DOCUMENT_ACTIVITES_TO_DOC_MAP = {
+    "performed_by_email": {
+        "target_field": "performed_from",
+        "type": FieldTypes.STRING,
+    },
+    "performed_at": {"target_field": "performed_at", "type": FieldTypes.TIMESTAMP},
+    "country": {"target_field": "country", "type": FieldTypes.STRING},
+    "activity": {"target_field": "activity", "type": FieldTypes.STRING},
+    "operation_type": {"target_field": "operation_type", "type": FieldTypes.STRING},
+    "latitude": {"target_field": "latitude", "type": FieldTypes.DOUBLE},
+    "performed_by_name": {"target_field": "performed_by", "type": FieldTypes.STRING},
+    "ip_address": {"target_field": "ip_address", "type": FieldTypes.STRING},
+    "longitude": {"target_field": "longitude", "type": FieldTypes.DOUBLE},
+}

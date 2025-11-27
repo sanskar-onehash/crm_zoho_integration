@@ -41,7 +41,9 @@
   "section_break_ydzq",
   "actions",
   "section_break_tncw",
-  "notes"
+  "notes",
+  "activities_tab",
+  "document_activities"
  ],
  "fields": [
   {
@@ -233,7 +235,8 @@
    "fieldtype": "Data",
    "label": "Document ID",
    "read_only": 1,
-   "reqd": 1
+   "reqd": 1,
+   "search_index": 1
   },
   {
    "fieldname": "document_name",
@@ -256,13 +259,26 @@
    "label": "From Template",
    "options": "ZohoSign Template",
    "read_only": 1,
-   "reqd": 1
+   "reqd": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "activities_tab",
+   "fieldtype": "Tab Break",
+   "label": "Activities"
+  },
+  {
+   "fieldname": "document_activities",
+   "fieldtype": "Table",
+   "label": "Document Activities",
+   "options": "ZohoSIgn Document Activities",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-11-27 11:48:13.227536",
+ "modified": "2025-11-27 14:29:29.786158",
  "modified_by": "Administrator",
  "module": "ZohoSign",
  "name": "ZohoSign Document",

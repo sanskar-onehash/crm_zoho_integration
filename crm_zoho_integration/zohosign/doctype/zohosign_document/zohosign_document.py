@@ -13,6 +13,7 @@ class ZohoSignDocument(Document):
 
 	if TYPE_CHECKING:
 		from crm_zoho_integration.zohosign.doctype.zohosign_document_actions.zohosign_document_actions import ZohoSignDocumentActions
+		from crm_zoho_integration.zohosign.doctype.zohosign_document_activities.zohosign_document_activities import ZohoSIgnDocumentActivities
 		from crm_zoho_integration.zohosign.doctype.zohosign_template_documents.zohosign_template_documents import ZohoSignTemplateDocuments
 		from frappe.types import DF
 
@@ -20,6 +21,7 @@ class ZohoSignDocument(Document):
 		actions: DF.Table[ZohoSignDocumentActions]
 		amended_from: DF.Link | None
 		description: DF.SmallText | None
+		document_activities: DF.Table[ZohoSIgnDocumentActivities]
 		document_created_on: DF.Datetime | None
 		document_expires_by: DF.Datetime | None
 		document_id: DF.Data
