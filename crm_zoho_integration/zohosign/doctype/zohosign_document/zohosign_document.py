@@ -29,7 +29,7 @@ class ZohoSignDocument(Document):
 		document_name: DF.Data | None
 		documents: DF.Table[ZohoSignTemplateDocuments]
 		expiration_days: DF.Int
-		from_template: DF.Link
+		from_template: DF.Link | None
 		in_process: DF.Check
 		is_deleted: DF.Check
 		is_expiring: DF.Check

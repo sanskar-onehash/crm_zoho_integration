@@ -13,7 +13,7 @@ def handle_document_event(*args, **kwargs):
     activity_doc = mappers.get_document_activities_doc(event_details, as_dict=True)
 
     existing_document = frappe.db.exists(
-        "ZohoSign Document", {"document_id": updated_document.get("ocument_id")}
+        "ZohoSign Document", {"document_id": updated_document.get("document_id")}
     )
     document_doc = None
 
