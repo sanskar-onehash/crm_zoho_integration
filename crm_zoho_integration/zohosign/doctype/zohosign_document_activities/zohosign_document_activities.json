@@ -6,7 +6,6 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "action_id",
   "performed_by",
   "performed_from",
   "performed_at",
@@ -22,13 +21,6 @@
   "longitude"
  ],
  "fields": [
-  {
-   "fieldname": "action_id",
-   "fieldtype": "Data",
-   "label": "Action ID",
-   "read_only": 1,
-   "reqd": 1
-  },
   {
    "fieldname": "performed_by",
    "fieldtype": "Data",
@@ -108,7 +100,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-11-27 14:30:23.450913",
+ "modified": "2025-11-27 16:46:39.115625",
  "modified_by": "Administrator",
  "module": "ZohoSign",
  "name": "ZohoSIgn Document Activities",

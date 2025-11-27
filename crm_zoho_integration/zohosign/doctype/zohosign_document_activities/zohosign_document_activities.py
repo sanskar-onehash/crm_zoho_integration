@@ -14,7 +14,6 @@ class ZohoSIgnDocumentActivities(Document):
 	if TYPE_CHECKING:
 		from frappe.types import DF
 
-		action_id: DF.Data
 		activity: DF.SmallText | None
 		country: DF.Data | None
 		ip_address: DF.Data | None
