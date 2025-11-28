@@ -13,6 +13,11 @@ def generate_hmac_secret():
 
 
 @frappe.whitelist()
+def sync_template(template_name: str):
+    return sign_service.sync_template(template_name)
+
+
+@frappe.whitelist()
 def fetch_templates():
     if not frappe.has_permission("ZohoSign Template", "create"):
         frappe.throw("User does not have permission to create new ZohoSign Template")

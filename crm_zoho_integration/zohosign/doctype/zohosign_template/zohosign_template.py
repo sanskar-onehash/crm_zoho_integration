@@ -24,7 +24,7 @@ class ZohoSignTemplate(Document):
 		is_deleted: DF.Check
 		is_sequential: DF.Check
 		naming_series: DF.Literal["", "ZH-SIGN-TMPL-"]
-		notes: DF.Text | None
+		notes: DF.TextEditor | None
 		owner_email: DF.Data | None
 		owner_first_name: DF.Data | None
 		owner_id: DF.Data | None

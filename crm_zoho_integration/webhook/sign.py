@@ -1,6 +1,10 @@
 import frappe
-from crm_zoho_integration import decorators
+from crm_zoho_integration import decorators, utils
 from crm_zoho_integration.mappers.sign import mappers
+import typing
+
+if typing.TYPE_CHECKING:
+    from frappe.model.document import Document
 
 
 @frappe.whitelist(allow_guest=True)
@@ -9,6 +13,9 @@ def handle_document_event(*args, **kwargs):
     document_data = frappe.form_dict.get("requests")
     event_details = frappe.form_dict.get("notifications")
 
+    if not (document_data and event_details):
+        frappe.throw("Invalid Request. Required data not found.")
+
     updated_document = mappers.get_document_doc(document_data, as_dict=True)
     activity_doc = mappers.get_document_activities_doc(event_details, as_dict=True)
 
@@ -16,9 +23,10 @@ def handle_document_event(*args, **kwargs):
         "ZohoSign Document", {"document_id": updated_document.get("document_id")}
     )
     document_doc = None
-
     if existing_document:
         document_doc = frappe.get_doc("ZohoSign Document", existing_document)
+        if do_activity_already_exists(document_doc, activity_doc):
+            return
     else:
         document_doc = frappe.new_doc("ZohoSign Document")
 
@@ -27,3 +35,16 @@ def handle_document_event(*args, **kwargs):
     document_doc.save(ignore_permissions=True)
 
     frappe.db.commit()
+
+
+def do_activity_already_exists(document_doc: "Document", activity: dict) -> bool:
+    for doc_activity in document_doc.document_activities:
+        if (
+            doc_activity.get("performed_from") == activity.get("performed_from")
+            and doc_activity.get("operation_type") == activity.get("operation_type")
+            and frappe.utils.get_datetime(activity.get("performed_at"))
+            == frappe.utils.get_datetime(doc_activity.get("performed_at"))
+        ):
+            return True
+
+    return False

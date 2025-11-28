@@ -1,3 +1,4 @@
+from frappe import cint
 from crm_zoho_integration.mappers.utils import timestamp_to_datetime
 from crm_zoho_integration.mappers.field_types import FieldTypes
 
@@ -8,6 +9,9 @@ def apply_mapping(data: dict, mappings: dict) -> dict:
     phone_fields = []
 
     for source_field, config in mappings.items():
+        if source_field not in data:
+            continue
+
         value = data.get(source_field)
         target_field = config.get("target_field")
 
@@ -36,8 +40,12 @@ def apply_mapping(data: dict, mappings: dict) -> dict:
             if target_field:
                 result[target_field] = value
         elif config["type"] == FieldTypes.PHONE_NUMBER:
-            if config.get("country_code_field"):
+            if value and config.get("country_code_field"):
                 phone_fields.append({"value": value, **config})
+        elif config["type"] == FieldTypes.INTEGER:
+            result[target_field] = cint(value or "")
+        elif config["type"] == FieldTypes.DOUBLE:
+            result[target_field] = float(value or "0")
         else:
             result[target_field] = value
 

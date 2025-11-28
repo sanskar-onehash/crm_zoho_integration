@@ -13,6 +13,28 @@ def get_sign_webhook_url() -> str:
     )
 
 
+def sync_template(template_name):
+    template_id = frappe.db.get_value("ZohoSign Template", template_name, "template_id")
+    if not template_id:
+        frappe.throw("No Template found.")
+
+    zoho_settings = utils.get_zoho_settings()
+
+    template_data = sign_client.get_template(
+        template_id=template_id,
+        server_domain=zoho_settings.server_domain,
+        access_token=auth_service.get_access_token(),
+    )
+    template_doc_data = mappers.get_template_doc(template_data, as_dict=True)
+
+    utils.create_or_update(
+        "ZohoSign Template",
+        {"template_id": template_data.get("template_id")},
+        template_doc_data,
+        save=True,
+    )
+
+
 def sync_templates(publish_progress: None) -> None:
     zoho_settings = utils.get_zoho_settings()
     start_index = 0
@@ -36,10 +58,14 @@ def sync_templates(publish_progress: None) -> None:
                     },
                 )
 
-            if not frappe.db.exists(
-                "ZohoSign Template", {"template_id": template.get("template_id")}
-            ):
-                mappers.get_template_doc(template).save()
+            template_doc_data = mappers.get_template_doc(template, as_dict=True)
+
+            utils.create_or_update(
+                "ZohoSign Template",
+                {"template_id": template.get("template_id")},
+                template_doc_data,
+                save=True,
+            )
 
         if templates_data.get("has_more_rows"):
             start_index = start_index + FETCH_ROW_COUNT - 1

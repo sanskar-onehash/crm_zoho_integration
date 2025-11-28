@@ -35,7 +35,7 @@ class ZohoSignDocument(Document):
 		is_expiring: DF.Check
 		is_sequential: DF.Check
 		naming_series: DF.Literal["", "ZH-SIGN-DOC-"]
-		notes: DF.SmallText | None
+		notes: DF.TextEditor | None
 		owner_email: DF.Data | None
 		owner_first_name: DF.Data | None
 		owner_id: DF.Data | None

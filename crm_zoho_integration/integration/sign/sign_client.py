@@ -3,6 +3,16 @@ from . import sign_meta
 from crm_zoho_integration.integration import client, utils
 
 
+def get_template(template_id: str, access_token: str, server_domain: str) -> dict:
+    template_data = client.get(
+        endpoint=_get_endpoint(f"/templates/{template_id}"),
+        base_uri=_get_base_uri(server_domain),
+        access_token=access_token,
+    )
+
+    return template_data.get("templates")
+
+
 def fetch_templates(
     server_domain: str,
     access_token: str,

@@ -111,7 +111,7 @@
   },
   {
    "fieldname": "notes",
-   "fieldtype": "Text",
+   "fieldtype": "Text Editor",
    "label": "Notes"
   },
   {
@@ -206,7 +206,7 @@
    "link_fieldname": "from_template"
   }
  ],
- "modified": "2025-11-27 11:57:15.194348",
+ "modified": "2025-11-28 09:23:40.258361",
  "modified_by": "Administrator",
  "module": "ZohoSign",
  "name": "ZohoSign Template",

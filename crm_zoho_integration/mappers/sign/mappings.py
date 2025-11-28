@@ -10,7 +10,7 @@ TEMPLATE_DOCUMENTS_TO_DOC_MAP = {
         "type": FieldTypes.INTEGER,
     },
     "document_order": {
-        "target_field": "ocument_order",
+        "target_field": "document_order",
         "type": FieldTypes.INTEGER,
     },
     "total_pages": {
