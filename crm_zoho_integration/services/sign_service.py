@@ -72,8 +72,6 @@ def sync_templates(publish_progress: None) -> None:
         else:
             break
 
-    frappe.db.commit()
-
 
 def use_template(template_id: str, template_data: dict, quick_send: bool = True) -> str:
     if not frappe.has_permission("ZohoSign Template"):

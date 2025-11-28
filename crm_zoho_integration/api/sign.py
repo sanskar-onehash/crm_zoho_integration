@@ -23,7 +23,7 @@ def fetch_templates():
         frappe.throw("User does not have permission to create new ZohoSign Template")
 
     frappe.enqueue(
-        sign_service.sync_templates,
+        _fetch_templates,
         queue="default",
         timeout=FETCH_TEMPLATES_TIMEOUT,
         job_name=FETCH_TEMPLATES_JOB_NAME,
@@ -34,6 +34,11 @@ def fetch_templates():
         "msg": "ZohoSign Templates syncing started in background.",
         "track_on": FETCH_TEMPLATES_PROGRESS_EVENT,
     }
+
+
+def _fetch_templates(publish_progress: str):
+    sign_service.sync_templates(publish_progress=publish_progress)
+    frappe.db.commit()
 
 
 @frappe.whitelist()
