@@ -113,7 +113,7 @@ TEMPLATE_TO_DOC_MAP = {
 }
 
 DOCUMENT_TO_DOC_MAP = {
-    "request_status": {"target_field": "request_status", "type": FieldTypes.STRING},
+    "request_status": {"target_field": "document_status", "type": FieldTypes.STRING},
     "notes": {"target_field": "notes", "type": FieldTypes.STRING},
     "owner_id": {"target_field": "owner_id", "type": FieldTypes.STRING},
     "description": {"target_field": "description", "type": FieldTypes.STRING},

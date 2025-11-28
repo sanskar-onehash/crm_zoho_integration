@@ -10,7 +10,7 @@
   "naming_series",
   "document_id",
   "document_name",
-  "request_status",
+  "document_status",
   "sign_percentage",
   "amended_from",
   "from_template",
@@ -59,12 +59,6 @@
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
-  },
-  {
-   "fieldname": "request_status",
-   "fieldtype": "Data",
-   "label": "Request Status",
-   "read_only": 1
   },
   {
    "fieldname": "owner_id",
@@ -272,12 +266,18 @@
    "label": "Document Activities",
    "options": "ZohoSIgn Document Activities",
    "read_only": 1
+  },
+  {
+   "fieldname": "document_status",
+   "fieldtype": "Data",
+   "label": "Document Status",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-11-28 11:33:08.381638",
+ "modified": "2025-11-28 12:10:32.595050",
  "modified_by": "Administrator",
  "module": "ZohoSign",
  "name": "ZohoSign Document",

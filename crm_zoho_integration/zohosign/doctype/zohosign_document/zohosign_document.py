@@ -27,6 +27,7 @@ class ZohoSignDocument(Document):
 		document_id: DF.Data
 		document_modified_on: DF.Datetime | None
 		document_name: DF.Data | None
+		document_status: DF.Data | None
 		documents: DF.Table[ZohoSignTemplateDocuments]
 		expiration_days: DF.Int
 		from_template: DF.Link | None
@@ -40,11 +41,15 @@ class ZohoSignDocument(Document):
 		owner_first_name: DF.Data | None
 		owner_id: DF.Data | None
 		owner_last_name: DF.Data | None
-		request_status: DF.Data | None
 		request_type_id: DF.Data | None
 		request_type_name: DF.Data | None
 		self_sign: DF.Check
 		sign_percentage: DF.Percent
 		sign_submitted_on: DF.Datetime | None
 	# end: auto-generated types
-	pass
+
+	def before_save(self):
+		if self.document_status == "completed":
+			self.sign_percentage = 100
+			self.docstatus = 1
+			self.run_method("before_submit")
