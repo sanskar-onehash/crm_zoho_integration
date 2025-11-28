@@ -9,8 +9,37 @@ frappe.ui.form.on("ZohoSign Template", {
 
 function addZohoSignTemplateActions(frm) {
   if (!frm.is_new()) {
+    addSyncTemplateButton(frm);
     addUseTemplateButton(frm);
   }
+}
+
+function addSyncTemplateButton(frm) {
+  const BTN_LABEL = "Sync Template";
+
+  frm.page.remove_inner_button(BTN_LABEL);
+  frm.page.add_inner_button(
+    BTN_LABEL,
+    () => {
+      frappe.call({
+        method: "crm_zoho_integration.api.sign.sync_template",
+        args: {
+          template_name: frm.doc.name,
+        },
+        freeze: true,
+        freeze_message: "Syncing Template...",
+        callback: (res) => {
+          if (!res.exc) {
+            frappe.show_alert({
+              indicator: "green",
+              message: "Template synced successfully.",
+            });
+          }
+        },
+      });
+    },
+    null,
+  );
 }
 
 function addUseTemplateButton(frm) {
@@ -44,7 +73,7 @@ function addUseTemplateButton(frm) {
           {
             label: "Notes",
             fieldname: "notes",
-            fieldtype: "Small Text",
+            fieldtype: "Text Editor",
           },
         ],
         size: "large",

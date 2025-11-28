@@ -1,124 +1,62 @@
-// Copyright (c) 2025, OneHash and contributors
-// For license information, please see license.txt
-
-frappe.ui.form.on("ZohoSign Template", {
-  refresh(frm) {
-    addZohoSignTemplateActions(frm);
+frappe.listview_settings["ZohoSign Template"] = {
+  onload: function (listview) {
+    addZohoSignTemplateListActions(listview);
   },
-});
+};
 
-function addZohoSignTemplateActions(frm) {
-  if (!frm.is_new()) {
-    addSyncTemplateButton(frm);
-    addUseTemplateButton(frm);
-  }
+function addZohoSignTemplateListActions(listview) {
+  addFetchTemplatesBtn(listview);
 }
 
-function addSyncTemplateButton(frm) {
-  const BTN_LABEL = "Sync Template";
+function addFetchTemplatesBtn(listview) {
+  const DIALOG_TITLE = "Fetching ZohoSign Templates";
+  const BTN_LABEL = "Fetch ZohoSign Templates";
 
-  frm.page.remove_inner_button(BTN_LABEL);
-  frm.page.add_inner_button(
-    BTN_LABEL,
-    () => {
-      frappe.call({
-        method: "crm_zoho_integration.api.sign.sync_template",
-        args: {
-          template_name: frm.doc.name,
-        },
-        freeze: true,
-        freeze_message: "Syncing Template...",
-        callback: (res) => {
-          if (!res.exc) {
-            frappe.show_alert({
-              indicator: "green",
-              message: "Template synced successfully.",
-            });
-          }
-        },
-      });
-    },
-    null,
-  );
-}
+  listview.page.add_inner_button(BTN_LABEL, function () {
+    frappe.call({
+      method: "crm_zoho_integration.api.sign.fetch_templates",
+      callback: function (response) {
+        if (response && response.message) {
+          if (response.message.status === "success") {
+            frappe.show_alert(
+              response.message.msg || "Started fetching ZohoSign Templates",
+              5,
+            );
 
-function addUseTemplateButton(frm) {
-  const BTN_LABEL = "Use Template";
+            function handleRealtimeProgress(msg) {
+              progressDialog = frappe.show_progress(
+                msg.title || DIALOG_TITLE,
+                msg.progress,
+                msg.total,
+                "Please Wait...",
+                true,
+              );
 
-  frm.page.remove_inner_button(BTN_LABEL);
-  frm.page.add_inner_button(
-    BTN_LABEL,
-    async () => {
-      const dialog = new frappe.ui.Dialog({
-        title: BTN_LABEL,
-        fields: [
-          {
-            label: "Document Name",
-            fieldname: "document_name",
-            fieldtype: "Data",
-            reqd: 1,
-          },
-          {
-            label: "Actions",
-            fieldname: "actions",
-            fieldtype: "Table",
-            options: "ZohoSign Document Actions",
-            fields: getActionFieldsForUse(),
-            data: frm.doc.actions.map((action) => {
-              const preparedAction = { ...action };
-              delete preparedAction.name;
-              return preparedAction;
-            }),
-          },
-          {
-            label: "Notes",
-            fieldname: "notes",
-            fieldtype: "Text Editor",
-          },
-        ],
-        size: "large",
-        primary_action_label: BTN_LABEL,
-        primary_action: (values) => {
-          frappe.call({
-            method: "crm_zoho_integration.api.sign.use_template",
-            args: {
-              template_id: frm.doc.name,
-              template_data: {
-                ...values,
-              },
-            },
-            freeze: true,
-            freeze_message: "Creating ZohoSign Document...",
-            callback: (res) => {
-              if (res.message && !res.exc) {
-                dialog.hide();
-                frappe.show_alert({
-                  indicator: "green",
-                  message: "ZohoSign document created and sent successfully.",
-                });
+              if (msg.progress === msg.total) {
+                frappe.show_alert(
+                  {
+                    indicator: "green",
+                    message: "ZohoSign templates fetched successfully.",
+                  },
+                  5,
+                );
+                frappe.realtime.off(
+                  response.message.track_on,
+                  handleRealtimeProgress,
+                );
               }
-            },
-          });
-        },
-      });
-      dialog.show();
-    },
-    null,
-    "primary",
-  );
-}
-
-function getActionFieldsForUse() {
-  const fieldOverrides = {
-    action_type: { reqd: 1, read_only: 1 },
-    recipient_name: { reqd: 1 },
-    recipient_email: { reqd: 1 },
-    signing_order: { read_only: 1 },
-    role: { read_only: 1 },
-    action_status: { hidden: 1 },
-  };
-  return frappe.get_meta("ZohoSign Document Actions").fields.map((field) => ({
-    ...field,
-    ...(fieldOverrides[field.fieldname] || []),
-  }));
+            }
+            frappe.realtime.on(
+              response.message.track_on,
+              handleRealtimeProgress,
+            );
+          } else {
+            frappe.throw(
+              `Error occured during fetching templates: ${response.message}`,
+            );
+          }
+        }
+      },
+    });
+  });
 }
