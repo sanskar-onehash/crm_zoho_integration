@@ -14,6 +14,8 @@
   "sign_percentage",
   "amended_from",
   "from_template",
+  "certificate_file",
+  "certificate",
   "column_break_kkoo",
   "owner_id",
   "owner_first_name",
@@ -272,12 +274,26 @@
    "fieldtype": "Data",
    "label": "Document Status",
    "read_only": 1
+  },
+  {
+   "fetch_from": "certificate_file.file_url",
+   "fieldname": "certificate",
+   "fieldtype": "Attach",
+   "label": "Certificate",
+   "read_only": 1
+  },
+  {
+   "fieldname": "certificate_file",
+   "fieldtype": "Link",
+   "label": "Certificate File",
+   "options": "File",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-11-28 12:10:32.595050",
+ "modified": "2025-12-01 08:37:46.388367",
  "modified_by": "Administrator",
  "module": "ZohoSign",
  "name": "ZohoSign Document",

@@ -1,8 +1,13 @@
 import frappe
+import typing
+
 from . import auth_service
 from crm_zoho_integration import utils
 from crm_zoho_integration.integration.sign import sign_client
 from crm_zoho_integration.mappers.sign import mappers
+
+if typing.TYPE_CHECKING:
+    from frappe.model.document import Document
 
 FETCH_ROW_COUNT = 25
 
@@ -98,3 +103,48 @@ def use_template(template_id: str, template_data: dict, quick_send: bool = True)
     document_doc.save()
 
     return document_doc.name
+
+
+def download_document_pdf(
+    document_doc: "Document",
+    with_certifcate: bool = True,
+    merge: bool = False,
+    document_password: str | None = None,
+):
+    zoho_settings = utils.get_zoho_settings()
+
+    pdf_bytes = sign_client.download_document_pdfs(
+        server_domain=zoho_settings.server_domain,
+        access_token=auth_service.get_access_token(),
+        document_id=document_doc.document_id,
+        with_coc=with_certifcate,
+        merge=merge,
+        password=document_password,
+    )
+
+    file_docs = utils.create_file_doc_from_bytes(pdf_bytes)
+
+    for idx, file_doc in enumerate(file_docs):
+        file_doc.attached_to_doctype = "ZohoSign Document"
+        file_doc.attached_to_name = document_doc.name
+
+        if not file_doc.file_name:
+            file_doc.file_name = f"{document_doc.documents[idx].document_name}.pdf"
+            file_doc.save()
+            document_doc.documents[idx].document = file_doc.file_url
+            document_doc.documents[idx].document_file = file_doc.name
+            continue
+
+        file_doc.save()
+
+        if file_doc.file_name.startswith("completion certificate-"):
+            document_doc.certificate = file_doc.file_url
+            document_doc.certificate_file = file_doc.name
+
+        else:
+            for document in document_doc.documents:
+                if document.document_name in file_doc.file_name:
+                    document.document = file_doc.file_url
+                    document.document_file = file_doc.name
+                    break
+    return document_doc

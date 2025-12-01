@@ -20,6 +20,8 @@ class ZohoSignDocument(Document):
 		action_time: DF.Datetime | None
 		actions: DF.Table[ZohoSignDocumentActions]
 		amended_from: DF.Link | None
+		certificate: DF.Attach | None
+		certificate_file: DF.Link | None
 		description: DF.SmallText | None
 		document_activities: DF.Table[ZohoSIgnDocumentActivities]
 		document_created_on: DF.Datetime | None
@@ -47,9 +49,3 @@ class ZohoSignDocument(Document):
 		sign_percentage: DF.Percent
 		sign_submitted_on: DF.Datetime | None
 	# end: auto-generated types
-
-	def before_save(self):
-		if self.document_status == "completed":
-			self.sign_percentage = 100
-			self.docstatus = 1
-			self.run_method("before_submit")

@@ -2,7 +2,13 @@ import base64
 import frappe
 import hashlib
 import hmac
+import io
+import magic
 import typing
+import zipfile
+
+from pypdf import PdfReader
+
 
 if typing.TYPE_CHECKING:
     from frappe.model.document import Document
@@ -99,3 +105,42 @@ def check_if_outdated(doc: "Document", data: dict) -> bool:
             break
 
     return is_outdated
+
+
+def create_file_doc_from_bytes(
+    file_content: bytes, filename: str | None = None
+) -> list["Document"]:
+    file_type = magic.from_buffer(file_content)
+    files = []
+
+    if file_type == "data":
+        try:
+            with zipfile.ZipFile(io.BytesIO(file_content), "r") as zip_ref:
+                for file in zip_ref.filelist:
+                    files.append(
+                        frappe.get_doc(
+                            {
+                                "doctype": "File",
+                                "content": zip_ref.read(file.filename),
+                                "file_name": file.filename,
+                            }
+                        )
+                    )
+        except Exception as _:
+            pass
+
+    if not filename and "PDF" in file_type:
+        reader = PdfReader(io.BytesIO(file_content))
+        filename = reader.metadata.get("title")
+    if not files:
+        files.append(
+            frappe.get_doc(
+                {
+                    "doctype": "File",
+                    "content": file_content,
+                    "file_name": filename,
+                }
+            )
+        )
+
+    return files

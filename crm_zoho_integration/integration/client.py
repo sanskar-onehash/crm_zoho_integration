@@ -121,7 +121,12 @@ def _get_response_data(response):
             pass
     elif any(
         ct in content_type
-        for ct in ["image", "application/pdf", "application/octet-stream"]
+        for ct in [
+            "image",
+            "application/pdf",
+            "application/octet-stream",
+            "application/zip",
+        ]
     ):
         data = response.content
 

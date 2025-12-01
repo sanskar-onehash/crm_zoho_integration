@@ -137,13 +137,11 @@ after_install = "crm_zoho_integration.install.after_install"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
-# }
+doc_events = {
+	"ZohoSign Document": {
+		"before_submit": "crm_zoho_integration.events.doc_events.sign.zohosign_document.before_submit",
+	}
+}
 
 # Scheduled Tasks
 # ---------------

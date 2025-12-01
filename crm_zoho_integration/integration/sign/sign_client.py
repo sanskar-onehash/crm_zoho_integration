@@ -62,6 +62,22 @@ def use_template(
     return document_data.get("requests")
 
 
+def download_document_pdfs(
+    server_domain: str,
+    access_token: str,
+    document_id: str,
+    with_coc: bool = True,
+    merge: bool = False,
+    password: str | None = None,
+):
+    return client.get(
+        endpoint=_get_endpoint(f"/requests/{document_id}/pdf"),
+        base_uri=_get_base_uri(server_domain),
+        access_token=access_token,
+        params={"with_coc": with_coc, "merge": merge, "password": password},
+    )
+
+
 def _get_base_uri(server_domain):
     return utils.get_base_uri(sign_meta.HOST_NAME, server_domain)
 

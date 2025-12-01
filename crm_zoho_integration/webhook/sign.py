@@ -32,7 +32,13 @@ def handle_document_event(*args, **kwargs):
 
     document_doc.update(updated_document)
     document_doc.append("document_activities", activity_doc)
-    document_doc.save(ignore_permissions=True)
+
+    frappe.set_user("Administrator")
+    if document_doc.document_status == "completed":
+        document_doc.sign_percentage = 100
+        document_doc.submit()
+    else:
+        document_doc.save()
 
     frappe.db.commit()
 

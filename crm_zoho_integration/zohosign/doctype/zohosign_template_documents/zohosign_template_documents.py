@@ -14,6 +14,8 @@ class ZohoSignTemplateDocuments(Document):
 	if TYPE_CHECKING:
 		from frappe.types import DF
 
+		document: DF.Attach | None
+		document_file: DF.Link | None
 		document_id: DF.Data
 		document_name: DF.Data | None
 		document_order: DF.Int
