@@ -113,7 +113,7 @@ def create_file_doc_from_bytes(
     file_type = magic.from_buffer(file_content)
     files = []
 
-    if file_type == "data":
+    if file_type == "data" or "Zip archive" in file_type:
         try:
             with zipfile.ZipFile(io.BytesIO(file_content), "r") as zip_ref:
                 for file in zip_ref.filelist:
