@@ -4,7 +4,10 @@ from crm_zoho_integration.services import auth_service
 
 @frappe.whitelist()
 def get_auth_url():
-    return auth_service.get_auth_url()
+    auth_url = auth_service.get_auth_url()
+
+    frappe.response["message"] = auth_url
+    return auth_url
 
 
 @frappe.whitelist(allow_guest=True)

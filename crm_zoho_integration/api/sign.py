@@ -9,7 +9,10 @@ FETCH_TEMPLATES_PROGRESS_EVENT = "fetch_zohosign_templates_progress"
 
 @frappe.whitelist()
 def generate_hmac_secret():
-    return frappe.generate_hash(length=128)
+    hmac_secret = frappe.generate_hash(length=128)
+
+    frappe.response["message"] = hmac_secret
+    return hmac_secret
 
 
 @frappe.whitelist()
@@ -29,11 +32,14 @@ def fetch_templates():
         job_name=FETCH_TEMPLATES_JOB_NAME,
         publish_progress=FETCH_TEMPLATES_PROGRESS_EVENT,
     )
-    return {
+    response = {
         "status": "success",
         "msg": "ZohoSign Templates syncing started in background.",
         "track_on": FETCH_TEMPLATES_PROGRESS_EVENT,
     }
+
+    frappe.response["message"] = response
+    return response
 
 
 def _fetch_templates(publish_progress: str):
@@ -46,4 +52,7 @@ def use_template(template_id: str, template_data: str | dict):
     if isinstance(template_data, str):
         template_data = frappe.parse_json(template_data)
 
-    return sign_service.use_template(template_id, template_data)
+    document_name = sign_service.use_template(template_id, template_data)
+
+    frappe.response["message"] = document_name
+    return document_name
