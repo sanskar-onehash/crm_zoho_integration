@@ -10,7 +10,11 @@ if typing.TYPE_CHECKING:
 @frappe.whitelist(allow_guest=True)
 @decorators.verify_zoho_hmac(secret_key_field="sign_hmac_key")
 def handle_document_event(*args, **kwargs):
-    frappe.enqueue(_handle_document_event, is_async=True, webhook_data=frappe.form_dict)
+    frappe.enqueue(
+        _handle_document_event,
+        is_async=True,
+        webhook_data=dict(frappe.form_dict),
+    )
 
 
 def _handle_document_event(webhook_data):
