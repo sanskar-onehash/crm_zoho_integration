@@ -53,6 +53,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "fetch_from": "document_file.file_url",
    "fieldname": "document",
    "fieldtype": "Attach",
    "label": "Document",
@@ -69,7 +70,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-12-01 08:41:36.825052",
+ "modified": "2025-12-01 08:51:09.131721",
  "modified_by": "Administrator",
  "module": "ZohoSign",
  "name": "ZohoSign Template Documents",
