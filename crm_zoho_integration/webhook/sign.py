@@ -10,8 +10,12 @@ if typing.TYPE_CHECKING:
 @frappe.whitelist(allow_guest=True)
 @decorators.verify_zoho_hmac(secret_key_field="sign_hmac_key")
 def handle_document_event(*args, **kwargs):
-    document_data = frappe.form_dict.get("requests")
-    event_details = frappe.form_dict.get("notifications")
+    frappe.enqueue(_handle_document_event, is_async=True, webhook_data=frappe.form_dict)
+
+
+def _handle_document_event(webhook_data):
+    document_data = webhook_data.get("requests")
+    event_details = webhook_data.get("notifications")
 
     if not (document_data and event_details):
         frappe.throw("Invalid Request. Required data not found.")
