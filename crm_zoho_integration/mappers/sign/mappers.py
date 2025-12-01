@@ -90,7 +90,9 @@ def create_use_template_payload(
             parsed_action[key] = value
 
         if action.get("recipient_phone_number"):
-            phone_number_parts = action.get("recipient_phone_number").split(" ")
+            phone_number_parts = (
+                action.get("recipient_phone_number").replace("-", " ").split(" ")
+            )
             if len(phone_number_parts) < 2:
                 frappe.throw("Invalid phone number format")
 
