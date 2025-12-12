@@ -42,7 +42,7 @@ def _handle_document_event(webhook_data):
     document_doc.append("document_activities", activity_doc)
 
     frappe.set_user("Administrator")
-    if document_doc.document_status == "completed":
+    if document_doc.document_status == "completed" and document_doc.docstatus == 0:
         document_doc.sign_percentage = 100
         document_doc.submit()
     else:
