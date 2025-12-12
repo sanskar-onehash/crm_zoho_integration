@@ -97,7 +97,7 @@
    "fieldtype": "Column Break"
   },
   {
-   "depends_on": "eval: doc.enabled && doc.client_id && doc.client_secret",
+   "depends_on": "eval: doc.enabled && !doc.development_mode && doc.client_id && doc.client_secret",
    "fieldname": "authorize",
    "fieldtype": "Button",
    "label": "Authorize"
@@ -160,7 +160,7 @@
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2025-12-12 11:41:46.113731",
+ "modified": "2025-12-12 11:44:18.832672",
  "modified_by": "Administrator",
  "module": "Zoho",
  "name": "Zoho Settings",
