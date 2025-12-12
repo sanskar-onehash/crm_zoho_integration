@@ -41,6 +41,15 @@ def get_access_token(ignore_permissions=False):
     return access_token
 
 
+def get_auth_code():
+    zoho_settings = utils.get_zoho_settings()
+
+    if not zoho_settings.authorization_code:
+        frappe.throw("Auth code not found.")
+
+    return zoho_settings.get_password("authorization_code")
+
+
 def generate_access_token(auth_code, location, ignore_permissions=False):
     domain = meta.LOCATIONS_TO_DOMAIN.get(location)
     if not domain:
@@ -56,6 +65,7 @@ def generate_access_token(auth_code, location, ignore_permissions=False):
     )
     zoho_settings.update(
         {
+            "authorization_code": auth_code,
             "refresh_token": tokens_data.get("refresh_token"),
             "server_domain": domain,
         }

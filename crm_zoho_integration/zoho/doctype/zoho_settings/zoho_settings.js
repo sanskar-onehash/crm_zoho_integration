@@ -22,6 +22,21 @@ frappe.ui.form.on("Zoho Settings", {
     });
   },
 
+  copy_auth_code(_) {
+    frappe.call({
+      method: "crm_zoho_integration.api.auth.get_auth_code",
+      freeze: true,
+      freeze_message: "Getting Auth Code...",
+      callback: (res) => {
+        if (res && res.message) {
+          frappe.utils.copy_to_clipboard(res.message);
+        } else {
+          frappe.throw("Auth code not found.");
+        }
+      },
+    });
+  },
+
   generate_sign_hmac_secret(frm) {
     frappe.call({
       method: "crm_zoho_integration.api.sign.generate_hmac_secret",

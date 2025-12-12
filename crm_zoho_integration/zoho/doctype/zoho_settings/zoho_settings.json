@@ -16,6 +16,7 @@
   "section_break_byia",
   "column_break_llvw",
   "authorization_code",
+  "copy_auth_code",
   "refresh_token",
   "server_domain",
   "column_break_mwjt",
@@ -65,9 +66,9 @@
    "read_only_depends_on": "eval: !doc.development_mode"
   },
   {
+   "depends_on": "eval: doc.enabled && !doc.development_mode",
    "fieldname": "refresh_token",
    "fieldtype": "Password",
-   "hidden": 1,
    "label": "Refresh Token"
   },
   {
@@ -147,12 +148,18 @@
   {
    "fieldname": "column_break_egkg",
    "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval: doc.enabled && doc.authorization_code",
+   "fieldname": "copy_auth_code",
+   "fieldtype": "Button",
+   "label": "Copy Auth Code"
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2025-11-27 13:52:44.081959",
+ "modified": "2025-12-12 10:26:14.078646",
  "modified_by": "Administrator",
  "module": "Zoho",
  "name": "Zoho Settings",

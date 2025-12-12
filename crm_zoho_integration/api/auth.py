@@ -10,6 +10,14 @@ def get_auth_url():
     return auth_url
 
 
+@frappe.whitelist()
+def get_auth_code():
+    auth_code = auth_service.get_auth_code()
+
+    frappe.response["message"] = auth_code
+    return auth_code
+
+
 @frappe.whitelist(allow_guest=True)
 def verify_auth(code, location):
     auth_service.generate_access_token(code, location)
