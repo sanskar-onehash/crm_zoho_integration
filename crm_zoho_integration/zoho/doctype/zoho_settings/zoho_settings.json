@@ -151,7 +151,7 @@
    "fieldtype": "Column Break"
   },
   {
-   "depends_on": "eval: doc.enabled && doc.authorization_code",
+   "depends_on": "eval: doc.enabled && !doc.development_mode && doc.authorization_code",
    "fieldname": "copy_auth_code",
    "fieldtype": "Button",
    "label": "Copy Auth Code"
@@ -160,7 +160,7 @@
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2025-12-12 11:38:14.866396",
+ "modified": "2025-12-12 11:41:46.113731",
  "modified_by": "Administrator",
  "module": "Zoho",
  "name": "Zoho Settings",
