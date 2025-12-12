@@ -43,6 +43,11 @@ def get_access_token(ignore_permissions=False):
 
 def get_auth_code():
     zoho_settings = utils.get_zoho_settings()
+    if not (
+        zoho_settings.has_permission()
+        and zoho_settings.has_permlevel_access_to("authorization_code")
+    ):
+        frappe.throw("User don't have access to read Authorization Code.")
 
     if not zoho_settings.authorization_code:
         frappe.throw("Auth code not found.")

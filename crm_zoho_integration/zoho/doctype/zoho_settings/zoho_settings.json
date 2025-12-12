@@ -89,7 +89,8 @@
    "fieldname": "authorization_code",
    "fieldtype": "Password",
    "hidden": 1,
-   "label": "Authorization Code"
+   "label": "Authorization Code",
+   "permlevel": 1
   },
   {
    "fieldname": "column_break_bibr",
@@ -159,7 +160,7 @@
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2025-12-12 10:26:14.078646",
+ "modified": "2025-12-12 11:38:14.866396",
  "modified_by": "Administrator",
  "module": "Zoho",
  "name": "Zoho Settings",
