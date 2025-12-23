@@ -48,11 +48,11 @@ def _fetch_templates(publish_progress: str):
 
 
 @frappe.whitelist()
-def use_template(template_id: str, template_data: str | dict):
+def use_template(template_id: str, template_data: str | dict, quick_send: bool = True):
     if isinstance(template_data, str):
         template_data = frappe.parse_json(template_data)
 
-    document_name = sign_service.use_template(template_id, template_data)
+    document_name = sign_service.use_template(template_id, template_data, quick_send)
 
     frappe.response["message"] = document_name
     return document_name
