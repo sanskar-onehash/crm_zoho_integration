@@ -78,7 +78,9 @@ def sync_templates(publish_progress: None) -> None:
             break
 
 
-def use_template(template_id: str, template_data: dict, quick_send: bool = True) -> str:
+def use_template(
+    template_id: str, template_data: dict, quick_send: bool = True
+) -> dict:
     if not frappe.has_permission("ZohoSign Template"):
         frappe.throw("User don't have permission to access ZohoSign Template.")
     if not frappe.has_permission("ZohoSign Document", "create"):
@@ -102,7 +104,7 @@ def use_template(template_id: str, template_data: dict, quick_send: bool = True)
     document_doc.set("from_template", template_doc.name)
     document_doc.save()
 
-    return document_doc.name
+    return {"document_data": document_data, "doc": document_doc.as_dict()}
 
 
 def download_document_pdf(
