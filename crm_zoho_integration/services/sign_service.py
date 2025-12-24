@@ -157,6 +157,24 @@ def add_document_by_html(
         )
 
 
+def send_document(document_id: str):
+    zoho_settings = utils.get_zoho_settings()
+    sign_doc = frappe.get_doc("ZohoSign Document", {"document_id": document_id})
+
+    if not sign_doc:
+        frappe.throw("ZohoSign Document not found.")
+    if not sign_doc.has_permission("write"):
+        frappe.throw("You don't have permissions to perform this action.")
+
+    document_data = sign_client.send_document(
+        server_domain=zoho_settings.server_domain,
+        access_token=auth_service.get_access_token(),
+        document_id=document_id,
+    )
+
+    return {"document_data": document_data}
+
+
 def download_document_pdf(
     document_doc: "Document",
     with_certifcate: bool = True,

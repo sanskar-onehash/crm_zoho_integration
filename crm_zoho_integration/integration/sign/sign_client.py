@@ -86,6 +86,17 @@ def update_document(
     return document_res.get("requests")
 
 
+def send_document(server_domain: str, access_token: str, document_id: str) -> dict:
+    document_res = client.post(
+        endpoint=_get_endpoint(f"/requests/{document_id}/submit"),
+        base_uri=_get_base_uri(server_domain),
+        headers={},
+        access_token=access_token,
+    )
+
+    return document_res.get("requests")
+
+
 def download_document_pdfs(
     server_domain: str,
     access_token: str,

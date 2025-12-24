@@ -70,3 +70,11 @@ def add_document_by_html(
     )
 
     frappe.response["message"] = "success"
+
+
+@frappe.whitelist()
+def send_document(document_id: str):
+    document_data = sign_service.send_document(document_id=document_id)
+
+    frappe.response["message"] = document_data
+    return document_data
