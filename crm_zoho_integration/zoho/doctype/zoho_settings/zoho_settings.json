@@ -26,7 +26,9 @@
   "sign_hmac_key",
   "generate_sign_hmac_secret",
   "column_break_egkg",
-  "sign_webhook_url"
+  "sign_webhook_url",
+  "section_break_xniu",
+  "document_expiration_days"
  ],
  "fields": [
   {
@@ -155,12 +157,22 @@
    "fieldname": "copy_auth_code",
    "fieldtype": "Button",
    "label": "Copy Auth Code"
+  },
+  {
+   "fieldname": "section_break_xniu",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "15",
+   "fieldname": "document_expiration_days",
+   "fieldtype": "Int",
+   "label": "Document Expiration Days"
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2025-12-12 11:44:18.832672",
+ "modified": "2025-12-24 08:46:45.806511",
  "modified_by": "Administrator",
  "module": "Zoho",
  "name": "Zoho Settings",

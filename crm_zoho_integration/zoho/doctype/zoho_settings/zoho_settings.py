@@ -23,6 +23,7 @@ class ZohoSettings(Document):
         client_id: DF.Data | None
         client_secret: DF.Password | None
         development_mode: DF.Check
+        document_expiration_days: DF.Int
         enabled: DF.Check
         redirect_uri: DF.Data | None
         refresh_token: DF.Password | None
