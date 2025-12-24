@@ -137,7 +137,7 @@ def add_document_by_html(
         files=files,
     )
 
-    if document_order is not None and document_order + 1 != len(sign_doc.documents) + 1:
+    if document_order is not None and document_order < len(sign_doc.documents):
         document_ids = [
             {
                 "document_id": document.get("document_id"),
