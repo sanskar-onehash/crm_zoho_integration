@@ -85,6 +85,33 @@ def patch(
     return _get_response_data(res)
 
 
+def put(
+    endpoint,
+    base_uri,
+    access_token=None,
+    headers=None,
+    params=None,
+    data=None,
+    files=None,
+    json=None,
+    throw=True,
+):
+    headers = _prepare_headers(headers, access_token)
+
+    res = requests.put(
+        f"{base_uri}{endpoint}",
+        headers=headers,
+        params=params,
+        data=data,
+        json=json,
+        files=files,
+    )
+    if throw:
+        res.raise_for_status()
+
+    return _get_response_data(res)
+
+
 def delete(
     endpoint,
     base_uri,

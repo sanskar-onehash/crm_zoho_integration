@@ -56,3 +56,17 @@ def use_template(template_id: str, template_data: str | dict, quick_send: bool =
 
     frappe.response["message"] = document_data
     return document_data
+
+
+@frappe.whitelist()
+def add_document_by_html(
+    document_id: str, file_name: str, file_content: str, document_order: int | None
+):
+    if not document_order is None and not isinstance(document_order, int):
+        document_order = frappe.cint(document_order)
+
+    sign_service.add_document_by_html(
+        document_id, file_name, file_content, document_order
+    )
+
+    frappe.response["message"] = "success"

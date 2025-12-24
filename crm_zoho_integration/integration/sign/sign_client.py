@@ -1,6 +1,6 @@
 import frappe
-from . import sign_meta
 from crm_zoho_integration.integration import client, utils
+from . import sign_meta
 
 
 def get_template(template_id: str, access_token: str, server_domain: str) -> dict:
@@ -60,6 +60,30 @@ def use_template(
     )
 
     return document_data.get("requests")
+
+
+def update_document(
+    server_domain: str,
+    access_token: str,
+    document_id: str,
+    document_data: dict | None = None,
+    files: list | dict | None = None,
+) -> dict:
+    headers = {}
+    if document_data:
+        headers = {"content-type": "application/x-www-form-urlencoded"}
+        document_data = frappe.utils.urlencode({"data": {"requests": document_data}})
+
+    document_res = client.put(
+        endpoint=_get_endpoint(f"/requests/{document_id}"),
+        base_uri=_get_base_uri(server_domain),
+        headers=headers,
+        access_token=access_token,
+        data=document_data,
+        files=files,
+    )
+
+    return document_res.get("requests")
 
 
 def download_document_pdfs(

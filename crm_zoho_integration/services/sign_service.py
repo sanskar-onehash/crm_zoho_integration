@@ -1,5 +1,6 @@
 import frappe
 import typing
+from frappe.utils import pdf as pdf_utils
 
 from . import auth_service
 from crm_zoho_integration import utils
@@ -105,6 +106,55 @@ def use_template(
     document_doc.save()
 
     return {"document_data": document_data, "doc": document_doc.as_dict()}
+
+
+def add_document_by_html(
+    document_id: str, file_name: str, file_content: str, document_order: int | None
+):
+    zoho_settings = utils.get_zoho_settings()
+    sign_doc = frappe.get_doc("ZohoSign Document", {"document_id": document_id})
+
+    if not sign_doc:
+        frappe.throw("ZohoSign Document not found.")
+    if not sign_doc.has_permission("write"):
+        frappe.throw("You don't have permissions to perform this action.")
+
+    if not file_name.endswith(".pdf"):
+        file_name += ".pdf"
+
+    file_content = pdf_utils.get_pdf(frappe.render_template(file_content, {}))
+    files = {"file": (file_name, file_content, "application/pdf")}
+
+    document_data = sign_client.update_document(
+        server_domain=zoho_settings.server_domain,
+        access_token=auth_service.get_access_token(),
+        document_id=document_id,
+        files=files,
+    )
+
+    if document_order is not None and document_order + 1 != len(sign_doc.documents) + 1:
+        document_ids = [
+            {
+                "document_id": document.get("document_id"),
+                "document_order": document.get("document_order"),
+            }
+            for document in document_data.get("document_ids")
+        ]
+
+        added_document = document_ids.pop()
+        document_ids.insert(document_order, added_document)
+
+        for i, _d in enumerate(document_ids):
+            _d["document_order"] = i
+
+        document_data = sign_client.update_document(
+            server_domain=zoho_settings.server_domain,
+            access_token=auth_service.get_access_token(),
+            document_id=document_id,
+            document_data={
+                "document_ids": document_ids,
+            },
+        )
 
 
 def download_document_pdf(
