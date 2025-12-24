@@ -90,11 +90,6 @@ def use_template(
     zoho_settings = utils.get_zoho_settings()
     template_doc = frappe.get_doc("ZohoSign Template", template_id)
 
-    if template_data.get("expiration_days") is None:
-        template_data["expiration_days"] = frappe.db.get_single_value(
-            "Zoho Settings", "document_expiration_days"
-        )
-
     template_payload = mappers.create_use_template_payload(
         template_doc, **template_data
     )
