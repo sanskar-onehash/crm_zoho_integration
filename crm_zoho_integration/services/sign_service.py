@@ -41,7 +41,7 @@ def sync_template(template_name):
     )
 
 
-def sync_templates(publish_progress: None) -> None:
+def sync_templates(publish_progress: bool = True) -> None:
     zoho_settings = utils.get_zoho_settings()
     start_index = 0
 
