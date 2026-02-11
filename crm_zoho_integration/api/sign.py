@@ -62,7 +62,7 @@ def use_template(template_id: str, template_data: str | dict, quick_send: bool =
 def add_document_by_html(
     document_id: str, file_name: str, file_content: str, document_order: int | None
 ):
-    if not document_order is None and not isinstance(document_order, int):
+    if document_order is not None and not isinstance(document_order, int):
         document_order = frappe.cint(document_order)
 
     sign_service.add_document_by_html(
