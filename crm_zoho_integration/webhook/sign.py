@@ -14,6 +14,7 @@ def handle_document_event(*args, **kwargs):
         _handle_document_event,
         is_async=True,
         webhook_data=dict(frappe.form_dict),
+        enqueue_after_commit=True,
     )
 
 
